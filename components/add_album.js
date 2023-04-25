@@ -2,13 +2,13 @@ import axios from "axios";
 import { useState } from "react"
 import useSWR, { mutate } from "swr"
 
-const AddAlbum = (props) => {
+const AddAlbum = ( {album} ) => {
   const endpoint = "http://localhost:8000/api/albums"
   const { data, error } = useSWR(endpoint)
   const [formData, setFormData] = useState({
-    artist: "",
-    title: "",
-    year_released: "",
+    artist: album ? album.artist : "",
+    title: album ? album.title : "",
+    year_released: album ? album.year_released : "",
   })
 
   const handleChange = (event) => {
@@ -20,31 +20,42 @@ const AddAlbum = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let newAlbum = {
+
+    const newAlbum = {
       artist: formData.artist,
       title: formData.title,
       year_released: formData.year_released
     };
     try {
-      const response = await axios.post(endpoint, newAlbum, {
+      const response = album
+      ? await axios.put(`${endpoint}/${album.id}`, newAlbum, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type" : "application/json"
         },
-      });
+      })
+      : 
+      await axios.post(endpoint, newAlbum, {
+        headers: {
+          "Content-Type" : "application/json",
+        },
+      })
+    .then(() => {
+      mutate(endpoint),
+      alert(`Error ${album ? "updating" : "adding"} album`)
 
-      console.log(response)
-      mutate(endpoint)
+    })
+      
+
 
       setFormData({
         artist:"",
         title:"",
         year_released:"",
       })
-
     }
     catch (error) {
       console.error(error)
-      alert("Error Adding Album")
+      alert(`Error ${album ? "updating" : "adding" } album`)
     }
   };
 
@@ -61,7 +72,7 @@ const AddAlbum = (props) => {
       <input type="number" id="year_released" name="year_released" value={formData.year_released} onChange={handleChange} required />
 
       <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Submit
+        {album ? "Update" : "Submit"}
       </button>
 
     </form>

@@ -18,11 +18,12 @@ const Home = ({ albums }) => {
     axios
       .delete(endpoint + "/" + event.target.value)
       .then(() => {
-        endpoint,
-        (data) => {
-          return data.filter((album) => album.id !== id)
-        }, 
-        false
+        mutate((prevData) => {
+          prevData.filter((album) => album.id !== event.target.value)
+        })
+      })
+      .catch((error) => {
+        alert("Error: Deleting Album")
       })
   }
   const displayAlbums = () => {
@@ -37,6 +38,10 @@ const Home = ({ albums }) => {
             <h4>{album.title}</h4>
             <h5>{album.year_released}</h5>
             <button onClick={handleDelete} value={album.id}>Remove Album</button>
+            <details>
+              <summary>Edit Album</summary>
+              <AddAlbum />
+            </details>
           </div>
         );
       })
