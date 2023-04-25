@@ -8,7 +8,7 @@ const AddAlbum = (props) => {
     title: "",
     year_released: "",
   };
-  const [album, setAlbum] = useState(formData)
+  const [album, setAlbum] = useState((props.album ? {...props.album} : formData)) 
 
   const handleChange = (event) => {
     setAlbum({
@@ -20,7 +20,6 @@ const AddAlbum = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleCreate(album)
-    setAlbum(formData)
   }
 
   return (

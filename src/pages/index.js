@@ -24,6 +24,14 @@ const Home = ({  }) => {
         getAlbums()
       })
   }
+  const handleUpdate = (editAlbum) => {
+    console.log(editAlbum)
+    axios
+      .put("http://localhost:8000/api/albums/" + editAlbum.id, editAlbum)
+      .then((response) => {
+        getAlbums()
+      })
+  }
   const handleDelete = (event) => {
     axios
       .delete("http://localhost:8000/api/albums/" + event.target.value)
@@ -50,6 +58,10 @@ const Home = ({  }) => {
               <h3>{album.title}</h3>
               <h4>{album.year_released}</h4>
               <button onClick={handleDelete} value={album.id}>Delete Album</button>
+              <details>
+                <summary>Edit Album</summary>
+                <AddAlbum handleCreate={handleUpdate} album={album}/>
+              </details>
               <br />
             </div>
             
