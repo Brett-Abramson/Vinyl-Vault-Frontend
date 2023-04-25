@@ -16,7 +16,14 @@ const Home = ({  }) => {
       )
       .catch((error) => console.error(error))
   }
-
+  const handleCreate = (newAlbum) => {
+    axios
+      .post("http://localhost:8000/api/albums", newAlbum)
+      .then((response) => {
+        console.log(response),
+        getAlbums()
+      })
+  }
 
   useEffect(() => {
     getAlbums()
@@ -41,7 +48,7 @@ const Home = ({  }) => {
         })}
       </div>
       <h2 className="text-lg">Add Album</h2>
-      <AddAlbum />
+      <AddAlbum handleCreate={handleCreate}/>
 
     </>
   );

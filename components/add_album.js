@@ -1,50 +1,27 @@
 import axios from "axios";
 import { useState } from "react";
-import useSWR, { mutate } from "swr";
 
-const AddAlbum = () => {
-  const endpoint = "http://localhost:8000/api/albums";
-  const { data, error } = useSWR(endpoint);
-  const [formData, setFormData] = useState({
+
+const AddAlbum = (props) => {
+  let formData = {
     artist: "",
     title: "",
     year_released: "",
-  });
+  };
+  const [album, setAlbum] = useState(formData)
 
   const handleChange = (event) => {
-    setFormData({
-      ...formData,
+    setAlbum({
+      ...album,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    let newAlbum = {
-      artist: formData.artist,
-      title: formData.title,
-      year_released: formData.year_released,
-    };
-    try {
-      const response = await axios.post(endpoint, newAlbum, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log(response);
-      mutate(endpoint);
-
-      setFormData({
-        artist: "",
-        title: "",
-        year_released: "",
-      });
-    } catch (error) {
-      console.error(error);
-      alert("Error Adding Album");
-    }
-  };
+    props.handleCreate(album)
+    setAlbum(formData)
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,7 +30,7 @@ const AddAlbum = () => {
         type="text"
         id="artist"
         name="artist"
-        value={formData.artist}
+        value={album.artist}
         onChange={handleChange}
         required
       />
@@ -63,7 +40,7 @@ const AddAlbum = () => {
         type="text"
         id="title"
         name="title"
-        value={formData.title}
+        value={album.title}
         onChange={handleChange}
         required
       />
@@ -73,7 +50,7 @@ const AddAlbum = () => {
         type="number"
         id="year_released"
         name="year_released"
-        value={formData.year_released}
+        value={album.year_released}
         onChange={handleChange}
         required
       />
