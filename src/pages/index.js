@@ -8,6 +8,7 @@ const Home = ({ albums }) => {
   const fetcher = (url) => axios.get(url).then((res) => res.data);
   const endpoint = "http://localhost:8000/api/albums"
   const { data, error } = useSWR(endpoint, fetcher);
+  
   const handleDelete = (event) => {
     axios
       .delete(endpoint + "/" + event.target.value)
@@ -23,13 +24,12 @@ const Home = ({ albums }) => {
     if (error) return <div> {error.message} </div>
     if (!data) return <div> Loading... </div>
     
-
     return (
       data.map((album, index) => {
         return (
-          <div key={index}>
-            <h2>{album.artist}</h2>
-            <h3>{album.title}</h3>
+          <div key={index} className="prose">
+            <h3>{album.artist}</h3>
+            <h4>{album.title}</h4>
             <h5>{album.year_released}</h5>
             <button onClick={handleDelete} value={album.id}>Remove Album</button>
           </div>
@@ -41,7 +41,7 @@ const Home = ({ albums }) => {
 
   return (
     <>
-      <h1>Album Assist</h1>
+      <h1 className="text-2xl">Album Assist</h1>
       {/* <div>
         {error ? (
           <div>return ({error.message}) </div>
@@ -62,7 +62,7 @@ const Home = ({ albums }) => {
       {displayAlbums()}
       {console.log(data)}
       <br />
-      <h2>Add Album</h2>
+      <h2 className="text-lg">Add Album</h2>
       <AddAlbum />
     </>
   );

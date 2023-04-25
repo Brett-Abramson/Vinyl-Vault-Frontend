@@ -28,7 +28,7 @@ const AddAlbum = () => {
       <label htmlFor="year_released">Year of Albums Release</label>
       <input type="number" id="year_released" name="year_released" required />
 
-      <button typpe="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Submit
       </button>
 
