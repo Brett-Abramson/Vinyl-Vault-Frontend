@@ -6,12 +6,23 @@ import useSWR from "swr";
 
 const Home = ({ albums }) => {
   const fetcher = (url) => axios.get(url).then((res) => res.data);
-  
-  const { data, error } = useSWR("http://localhost:8000/api/albums", fetcher);
-
+  const endpoint = "http://localhost:8000/api/albums"
+  const { data, error } = useSWR(endpoint, fetcher);
+  const handleDelete = (event) => {
+    axios
+      .delete(endpoint + "/" + event.target.value)
+      .then(() => {
+        endpoint,
+        (data) => {
+          return data.filter((album) => album.id !== id)
+        }, 
+        false
+      })
+  }
   const displayAlbums = () => {
     if (error) return <div> {error.message} </div>
     if (!data) return <div> Loading... </div>
+    
 
     return (
       data.map((album, index) => {
@@ -20,13 +31,14 @@ const Home = ({ albums }) => {
             <h2>{album.artist}</h2>
             <h3>{album.title}</h3>
             <h5>{album.year_released}</h5>
+            <button onClick={handleDelete} value={album.id}>Remove Album</button>
           </div>
         );
       })
     )
   }
 
-  
+
   return (
     <>
       <h1>Album Assist</h1>
