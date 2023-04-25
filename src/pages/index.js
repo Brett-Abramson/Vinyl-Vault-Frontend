@@ -3,12 +3,17 @@ import axios from "axios";
 import Link from "next/link";
 import AddAlbum from "../../components/add_album";
 import useSWR from "swr";
+import ListAlbums from "../../components/list_albums";
 
 const Home = ({ albums }) => {
+  // this is the GET
+  const [albumList, setAlbumList] = useState([])
   const fetcher = (url) => axios.get(url).then((res) => res.data);
   const endpoint = "http://localhost:8000/api/albums"
-  const { data, error } = useSWR(endpoint, fetcher);
+  const { data, error, mutate } = useSWR(endpoint, fetcher);
   
+
+
   const handleDelete = (event) => {
     axios
       .delete(endpoint + "/" + event.target.value)
@@ -42,6 +47,7 @@ const Home = ({ albums }) => {
   return (
     <>
       <h1 className="text-2xl">Album Assist</h1>
+      {console.log(data)}
       {/* <div>
         {error ? (
           <div>return ({error.message}) </div>
@@ -60,7 +66,6 @@ const Home = ({ albums }) => {
         )}
       </div> */}
       {displayAlbums()}
-      {console.log(data)}
       <br />
       <h2 className="text-lg">Add Album</h2>
       <AddAlbum />
