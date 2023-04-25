@@ -1,8 +1,22 @@
-
+import axios from "axios"
 
 const AddAlbum = () => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    let blankAlbum = { artist: event.target.artist.value, title: event.target.title.value, year_released: event.target.year_released.value}
+    const endpoint = "http://localhost:8000/api/albums"
+    const response = await axios.post(endpoint,blankAlbum, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  }
+
+
+
     return (
-        <form action="/api/form" method="post">
+        <form onSubmit={handleSubmit}>
         <label htmlFor="artist">Artist</label>
         <input type="text" id="artist" name="artist" required />
   
