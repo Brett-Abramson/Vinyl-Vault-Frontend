@@ -24,6 +24,14 @@ const Home = ({  }) => {
         getAlbums()
       })
   }
+  const handleDelete = (event) => {
+    axios
+      .delete("http://localhost:8000/api/albums/" + event.target.value)
+      .then((response) => {
+        console.log(response),
+        getAlbums()
+      })
+  }
 
   useEffect(() => {
     getAlbums()
@@ -41,6 +49,7 @@ const Home = ({  }) => {
               <h3>{album.artist}</h3>
               <h3>{album.title}</h3>
               <h4>{album.year_released}</h4>
+              <button onClick={handleDelete} value={album.id}>Delete Album</button>
               <br />
             </div>
             
