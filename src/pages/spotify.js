@@ -3,6 +3,7 @@ const axios = require("axios")
 
 const client_id = process.env.NEXT_PUBLIC_CLIENT_ID
 const client_secret = process.env.NEXT_PUBLIC_CLIENT_SECRET
+let token = ""
 
 // requesting authorization
 let authOptions = {
@@ -14,22 +15,44 @@ let authOptions = {
   },
   data: "grant_type=client_credentials",
 }
-const auth_token = Buffer.from(`${client_id}:${client_secret}`, 'utf-8').toString('base64')
 
-axios(authOptions)
+const getToken = () => {
+    axios(authOptions)
     .then(response => {
-        const token = response.data.access_token
-        console.log(token)
+        console.log(response.data)
+        token = response.data.access_token
     })
     .catch(error => {
         console.log(error)
     })
+}
+
+const searchAlbums = async (query) => {
+    // const token = await getToken();
+    console.log(token)
+    const response = await axios.get("https://api.spotify.com/v1/search", {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        params: {
+            q:"get on board",
+            type: "album",
+            market: "US"
+        }
+    })
+    console.log(response.data)
+    return response.data
+}
 
 const Spotify = () => {
 
     return (
         <>
-        
+        <button onClick={getToken}>Token</button>
+        <br />
+        <button onClick={searchAlbums}>Search albums</button>
+        <br />
+        <button onClick={console.log(token)}>log token</button>
         </>
     )
 }
