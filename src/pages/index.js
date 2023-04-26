@@ -50,6 +50,8 @@ const Home = ({  }) => {
 
       <h1 className="text-2xl">Album Assist</h1>
       <br />
+      <p><Link href="/spotify">Spotify API</Link></p>
+      <br />
       <div>
         {albumList.map((album, index) => {
           return (
