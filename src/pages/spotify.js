@@ -1,5 +1,4 @@
 const axios = require("axios")
-import Link from "next/link"
 
 
 const client_id = process.env.NEXT_PUBLIC_CLIENT_ID
@@ -17,13 +16,11 @@ let authOptions = {
   data: "grant_type=client_credentials",
 }
 
-export const getServerSideProps = async () => {
+const getToken = () => {
     axios(authOptions)
     .then(response => {
         console.log(response.data)
-        const token = response.data.access_token
-        console.log(token)
-        // return { props: { token } }
+        token = response.data.access_token
     })
     .catch(error => {
         console.log(error)
@@ -51,16 +48,11 @@ const Spotify = () => {
 
     return (
         <>
-        <div>
-            {/* <button onClick={getToken}>Token</button> */}
-            <br />
-            <button onClick={searchAlbums}>Search albums</button>
-            <br />
-            <p>Back To <Link href="/">Home</Link></p>
-        </div>
-        <div>
-            <h2>Album Title: </h2>
-        </div>
+        <button onClick={getToken}>Token</button>
+        <br />
+        <button onClick={searchAlbums}>Search albums</button>
+        <br />
+        <button onClick={console.log(token)}>log token</button>
         </>
     )
 }
