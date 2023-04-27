@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { AlbumContext } from "@/context/AlbumContext";
+import AddAlbum from "./AddAlbum";
 
 const ListAlbums = () => {
   const [albums, setAlbums] = useContext(AlbumContext);
@@ -15,6 +16,7 @@ const ListAlbums = () => {
         </div>
         )
       })}
+      <AddAlbum />
     </>
   );
 };
