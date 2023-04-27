@@ -1,21 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-import AddAlbum from "../../components/add_album";
+import AddAlbum from "../../components/AddAlbum";
+import AlbumsList from "../../components/AlbumsList";
+import Store from "@/context/Store";
 
 
 const Home = ({  }) => {
-  let [albumList, setAlbumList] = useState([])
-
-  const getAlbums = () => {
-    axios
-      .get("http://localhost:8000/api/albums")
-      .then(
-        (response) => setAlbumList(response.data),
-        (err) => console.error(err)
-      )
-      .catch((error) => console.error(error))
-  }
   const handleCreate = (newAlbum) => {
     axios
       .post("http://localhost:8000/api/albums", newAlbum)
@@ -41,9 +32,7 @@ const Home = ({  }) => {
       })
   }
 
-  useEffect(() => {
-    getAlbums()
-  }, [])
+
 
   return (
     <>
@@ -52,24 +41,9 @@ const Home = ({  }) => {
       <br />
       <p><Link href="/spotify">Spotify API</Link></p>
       <br />
-      <div>
-        {albumList.map((album, index) => {
-          return (
-            <div key={index}>
-              <h3>{album.artist}</h3>
-              <h3>{album.title}</h3>
-              <h4>{album.year_released}</h4>
-              <button onClick={handleDelete} value={album.id}>Delete Album</button>
-              <details>
-                <summary>Edit Album</summary>
-                <AddAlbum handleCreate={handleUpdate} album={album}/>
-              </details>
-              <br />
-            </div>
-            
-          )
-        })}
-      </div>
+      <Store>
+        <AlbumsList />
+      </Store>
       <h2 className="text-lg">Add Album</h2>
       <AddAlbum handleCreate={handleCreate}/>
 
