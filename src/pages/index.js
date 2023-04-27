@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-import AlbumsList from "../../components/AlbumsList";
+import AlbumsList from "../components/AlbumsList";
 import Store from "@/context/Store";
 
 

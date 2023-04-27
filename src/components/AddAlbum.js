@@ -27,34 +27,37 @@ const AddAlbum = () => {
 
 
     return (
-        <form onSubmit={addAlbum}>
-      <label htmlFor="artist">Artist</label>
+        <form onSubmit={addAlbum} className="bg-gradient-to-br from-blue-300 to-blue-500 p-4 rounded-lg">
+      <label htmlFor="artist" className="block font-medium mb-2 text-gray-700">Artist</label>
       <input
         type="text"
         id="artist"
         name="artist"
         value={album.artist}
         onChange={handleChange}
+        className="border-2 border-gray-300 mb-4 p-2 rounded-lg w-full"
         required
       />
 
-      <label htmlFor="title">Album Title</label>
+      <label className="block font-medium mb-2 text-gray-700" htmlFor="title">Album Title</label>
       <input
         type="text"
         id="title"
         name="title"
         value={album.title}
         onChange={handleChange}
+        className="border-2 border-gray-300 mb-4 p-2 rounded-lg w-full"
         required
       />
 
-      <label htmlFor="year_released">Year of Albums Release</label>
+      <label htmlFor="year_released" className="block font-medium mb-2 text-gray-700">Year of Albums Release</label>
       <input
         type="number"
         id="year_released"
         name="year_released"
         value={album.year_released}
         onChange={handleChange}
+        className="border-2 border-gray-300 mb-4 p-2 rounded-lg w-full"
         required
       />
 
