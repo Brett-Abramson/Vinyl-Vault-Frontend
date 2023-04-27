@@ -18,7 +18,7 @@ const AddAlbum = () => {
             .post("http://localhost:8000/api/albums", album)
             .then((response) => {
             console.log(response)
-            // getAlbums()
+            // maybe create a redirect to a page saying you have made album, or some action that causes RELOAD because delete will not work until reload
             })
     }
     const handleChange = (event) => {
