@@ -170,6 +170,7 @@ module.exports = {
       analogous_two: "#0290ee",
       triadic_one: "#021aee",
       triadic_two: "#d602ee",
+      triadic_two_two: "#d602ee"
     }),
     columns: {
       auto: 'auto',

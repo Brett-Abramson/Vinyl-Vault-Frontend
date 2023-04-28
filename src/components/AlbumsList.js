@@ -22,10 +22,10 @@ const ListAlbums = () => {
             return (
               <div
                 key={index}
-                className="bg-cyan-800 hover:bg-primary shadow-md hover:shadow-2xl rounded-lg mb-5 p-5"
+                className="bg-cyan-900 hover:bg-primary shadow-md hover:scale-105 hover:shadow-xl hover:cursor-pointer transform transition duration-300 ease-in-out  mb-5 p-5 aspect-square"
               >
-                <div className="flex justify-center items-center mb-4">
-                  <h2 className="text-lg font-medium  text-gray-800">
+                <div className="p-4">
+                  <h2 className="text-xl font-bold  text-gray-50">
                     {album.title}
                   </h2>
                   {/* <button
@@ -37,7 +37,7 @@ const ListAlbums = () => {
                     Delete Album
                   </button> */}
                 </div>
-                <p className="text-triadic_two mb-2">
+                <p className="text-triadic_two_two font-semibold mb-2">
                   {album.artist} - {album.year_released}
                 </p>
               </div>

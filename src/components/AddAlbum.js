@@ -31,13 +31,13 @@ const AddAlbum = () => {
   return (
     <div>
       <button
-        className="bg-orange-400 hover:bg-primary text-triadic_two font-bold py-2 px-4 rounded"
-        onClick={() => setShowModal(true)}
+        className="bg-amber-500 hover:bg-primary text-triadic_two font-bold py-2 px-4 rounded"
+        onClick={() => toggleModal()}
       >
-        Add Album
+        {showModal ? "Cancel" : "Add Album"}
       </button>
       {showModal && (
-        <div className="fixed z-1 inset-0 overflow-y-auto">
+        <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen">
             <div className="bg-white rounded-lg shadow-xl p-4">
               <h2 className="text-2xl font-bold mb-4">Add Album</h2>

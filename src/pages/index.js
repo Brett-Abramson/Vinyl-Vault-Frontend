@@ -44,7 +44,7 @@ const Home = ({  }) => {
   </div>
 </div>
   <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg">
-    <h1 className="text-white font-bold  text-3xl py-4 px-6">Welcome to Album Assist</h1>
+    <h1 className="text-white font-bold  text-3xl py-4 pt-10 px-6">Welcome to Album Assist</h1>
     <Store>
       <AlbumsList />
     </Store>
