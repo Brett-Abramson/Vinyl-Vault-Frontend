@@ -16,7 +16,7 @@ const SearchSpotify = (props) => {
             <div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="ablumTitle">Album Title</label>
-                    <input type="text" id="albumTitle" name="albumTitle" onChange={handleChange} />
+                    <input type="text" id="albumTitle" name="albumTitle" onChange={handleChange} required />
                     <button type="submit">Search</button>
                 </form>
             </div>
