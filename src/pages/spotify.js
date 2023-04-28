@@ -1,5 +1,6 @@
 const axios = require("axios");
 import { useState } from "react";
+import SearchSpotify from "@/components/SearchSpotify";
 
 const Spotify = () => {
   const client_id = process.env.NEXT_PUBLIC_CLIENT_ID;
@@ -40,7 +41,7 @@ const Spotify = () => {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        q: "get on board",
+        q: query,
         type: "album",
         market: "US",
         limit: "10",
@@ -60,6 +61,7 @@ const Spotify = () => {
       <button onClick={searchAlbums}>Search albums</button>
       <br />
       <button onClick={()=>{console.log(albums)}}>whats in albums</button>
+      <SearchSpotify searchAlbums={searchAlbums}/>
       <div>
         {albums.map((album) => {
             return (
