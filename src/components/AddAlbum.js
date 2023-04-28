@@ -31,7 +31,7 @@ const AddAlbum = () => {
   return (
     <div>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-analogous_one hover:bg-primary text-triadic_two font-bold py-2 px-4 rounded"
         onClick={() => setShowModal(true)}
       >
         Add Album
@@ -43,11 +43,11 @@ const AddAlbum = () => {
               <h2 className="text-2xl font-bold mb-4">Add Album</h2>
               <form
                 onSubmit={addAlbum}
-                className="bg-gradient-to-br from-blue-300 to-blue-500 p-4 rounded-lg"
+                className="bg-gradient-to-br from-analogous_two to-triadic_two p-4 rounded-lg"
               >
                 <label
                   htmlFor="artist"
-                  className="block font-medium mb-2 text-gray-700"
+                  className="block font-medium mb-2  text-gray-700"
                 >
                   Artist
                 </label>
@@ -95,7 +95,7 @@ const AddAlbum = () => {
 
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-analogous_one hover:bg-blue-700 text-triadic_one font-bold py-2 px-4 rounded"
                 >
                   Submit
                 </button>
