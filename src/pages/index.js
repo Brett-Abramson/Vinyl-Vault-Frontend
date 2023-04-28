@@ -34,15 +34,23 @@ const Home = ({  }) => {
 
 
   return (
-    <div className="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500">
-      <h1 className="text-2xl">Album Assist</h1>
-      <br />
-      <p><Link href="/spotify">Spotify API</Link></p>
-      <br />
-      <Store>
-        <AlbumsList />
-      </Store>
+<div className="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-screen">
+<div className="mx-auto my-10 w-72 h-72 rounded-full border-4 border-gray-800 hover:animate-spin">
+  <div className="flex items-center justify-center h-full rounded-full bg-gray-800 text-white font-bold text-3xl tracking-wider">
+    <div className="transform rotate-45">
+      <div className="text-2xl">ALBUM</div>
+      <div className="text-xl">ASSIST</div>
     </div>
+  </div>
+</div>
+  <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg">
+    <h1 className="text-white font-bold  text-3xl py-4 px-6">Welcome to Album Assist</h1>
+    <Store>
+      <AlbumsList />
+    </Store>
+  </div>
+</div>
+
   );
 };
 

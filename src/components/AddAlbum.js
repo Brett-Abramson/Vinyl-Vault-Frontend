@@ -31,7 +31,7 @@ const AddAlbum = () => {
   return (
     <div>
       <button
-        className="bg-analogous_one hover:bg-primary text-triadic_two font-bold py-2 px-4 rounded"
+        className="bg-orange-400 hover:bg-primary text-triadic_two font-bold py-2 px-4 rounded"
         onClick={() => setShowModal(true)}
       >
         Add Album
