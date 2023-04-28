@@ -1,93 +1,55 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-import AddAlbum from "../../components/add_album";
-import useSWR from "swr";
-import ListAlbums from "../../components/list_albums";
+import AlbumsList from "../components/AlbumsList";
+import Store from "@/context/Store";
 
-const Home = ({ albums }) => {
-  // this is the GET
-  const [albumList, setAlbumList] = useState([])
-  const fetcher = (url) => axios.get(url).then((res) => res.data);
-  const endpoint = "http://localhost:8000/api/albums"
-  const { data, error, mutate } = useSWR(endpoint, fetcher);
-  
-
-
-  const handleDelete = (event) => {
-    axios
-      .delete(endpoint + "/" + event.target.value)
-      .then(() => {
-        mutate((prevData) => {
-          prevData.filter((album) => album.id !== event.target.value)
-        })
-      })
-      .catch((error) => {
-        alert("Error: Deleting Album")
-      })
-  }
-  const displayAlbums = () => {
-    if (error) return <div> {error.message} </div>
-    if (!data) return <div> Loading... </div>
-    
-    return (
-      data.map((album, index) => {
-        return (
-          <div key={index} className="prose">
-            <h3>{album.artist}</h3>
-            <h4>{album.title}</h4>
-            <h5>{album.year_released}</h5>
-            <button onClick={handleDelete} value={album.id}>Remove Album</button>
-            <details>
-              <summary>Edit Album</summary>
-              <AddAlbum />
-            </details>
-          </div>
-        );
-      })
-    )
-  }
-
+const Home = ({}) => {
+  // const handleCreate = (newAlbum) => {
+  //   axios
+  //     .post("http://localhost:8000/api/albums", newAlbum)
+  //     .then((response) => {
+  //       console.log(response),
+  //       getAlbums()
+  //     })
+  // }
+  // const handleUpdate = (editAlbum) => {
+  //   console.log(editAlbum)
+  //   axios
+  //     .put("http://localhost:8000/api/albums/" + editAlbum.id, editAlbum)
+  //     .then((response) => {
+  //       getAlbums()
+  //     })
+  // }
+  // const handleDelete = (event) => {
+  //   axios
+  //     .delete("http://localhost:8000/api/albums/" + event.target.value)
+  //     .then((response) => {
+  //       console.log(response),
+  //       getAlbums()
+  //     })
+  // }
 
   return (
-    <>
-      <h1 className="text-2xl">Album Assist</h1>
-      {console.log(data)}
-      {/* <div>
-        {error ? (
-          <div>return ({error.message}) </div>
-        ) : data ? (
-          data.map((album, index) => {
-            return (
-              <div key={index}>
-                <h2>{album.artist}</h2>
-                <h3>{album.title}</h3>
-                <h5>{album.year_released}</h5>
-              </div>
-            );
-          })
-        ) : (
-          <div> Loading... </div>
-        )}
-      </div> */}
-      {displayAlbums()}
-      <br />
-      <h2 className="text-lg">Add Album</h2>
-      <AddAlbum />
-    </>
+    <div className="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-fit py-10">
+      <div className="mx-auto my-10 w-72 h-72 rounded-full border-4 border-gray-800 hover:animate-spin">
+        <div className="flex items-center justify-center h-full rounded-full bg-gray-800 text-white font-bold text-3xl tracking-wider">
+          <div className="transform rotate-12">
+            <div className="text-5xl font-barrio">VINYL</div>
+            <div className="text-3xl font-barrio">VAULT</div>
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg">
+        <h1 className="text-white font-bold text-3xl py-4 pt-10 px-6">
+          Welcome to Vinyl Vault
+        </h1>
+        <Store>
+          <AlbumsList />
+        </Store>
+      </div>
+    </div>
   );
 };
-
-// export async function getServerSideProps() {
-
-//   const res = await axios.get("http://127.0.0.1:8000/api/albums")
-//   const albums =  res.data
-
-//   return {
-//     props: {
-//       albums
-//     }
-//   }
-// }
 
 export default Home;
