@@ -34,8 +34,7 @@ const Home = ({  }) => {
 
 
   return (
-    <>
-
+    <div className="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500">
       <h1 className="text-2xl">Album Assist</h1>
       <br />
       <p><Link href="/spotify">Spotify API</Link></p>
@@ -43,10 +42,7 @@ const Home = ({  }) => {
       <Store>
         <AlbumsList />
       </Store>
-      {/* <h2 className="text-lg">Add Album</h2> */}
-      {/* <AddAlbum handleCreate={handleCreate}/> */}
-
-    </>
+    </div>
   );
 };
 

@@ -164,6 +164,12 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
+      primary: "#02EED5",
+      complementary: "#ee021a",
+      analogous_one: "#02ee60",
+      analogous_two: "#0290ee",
+      triadic_one: "#021aee",
+      triadic_two: "#d602ee",
     }),
     columns: {
       auto: 'auto',
