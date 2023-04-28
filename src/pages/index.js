@@ -44,6 +44,7 @@ const Home = ({}) => {
         <h1 className="text-white font-bold text-3xl py-4 pt-10 px-6">
           Welcome to Vinyl Vault
         </h1>
+        <Link href="/spotify">Search Spotify</Link>
         <Store>
           <AlbumsList />
         </Store>

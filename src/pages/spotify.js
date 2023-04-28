@@ -1,6 +1,7 @@
 const axios = require("axios");
 import { useState } from "react";
 import SearchSpotify from "@/components/SearchSpotify";
+import Link from "next/link";
 
 const client_id = process.env.NEXT_PUBLIC_CLIENT_ID;
 const client_secret = process.env.NEXT_PUBLIC_CLIENT_SECRET;
@@ -54,11 +55,12 @@ const Spotify = () => {
 
   return (
     <>
-      <button onClick={getToken}>Token</button>
+      {/* <button onClick={getToken}>Token</button>
       <br />
       <button onClick={searchAlbums}>Search albums</button>
       <br />
-      <button onClick={()=>{console.log(albums)}}>whats in albums</button>
+      <button onClick={()=>{console.log(albums)}}>whats in albums</button> */}
+      <Link href="/">Home</Link>
       <SearchSpotify searchAlbums={searchAlbums}/>
       <div>
         {albums.map((album) => {
