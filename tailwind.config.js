@@ -340,6 +340,8 @@ module.exports = {
         '"Courier New"',
         'monospace',
       ],
+      anton: ["Anton", "sans-serif"],
+      barrio: ["Barrio", "cursive"],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
