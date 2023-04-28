@@ -7,11 +7,7 @@ const client_secret = process.env.NEXT_PUBLIC_CLIENT_SECRET;
 
 const Spotify = () => {
 
-
   const [albums, setAlbums] = useState([]);
-    const [token, setToken] = useState("")
-  // requesting authorization
-  
 
   const getToken = () => {
     let authOptions = {
@@ -28,7 +24,6 @@ const Spotify = () => {
     return axios(authOptions)
       .then((response) => {
         console.log(response.data);
-        setToken(response.data.access_token);
         return response.data.access_token
       })
       .catch((error) => {
