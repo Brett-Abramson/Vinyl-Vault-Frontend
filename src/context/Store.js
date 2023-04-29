@@ -18,6 +18,7 @@ const Store = ( {children} ) => {
   useEffect(() => {
     getAlbums()
   }, [])
+  
   return <AlbumContext.Provider value={[albumList, setAlbumList]}>{children}</AlbumContext.Provider>
 }
 export default Store

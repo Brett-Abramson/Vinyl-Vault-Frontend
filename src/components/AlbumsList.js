@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AlbumContext } from "@/context/AlbumContext";
 import AddAlbum from "./AddAlbum";
 import axios from "axios";
+import Link from "next/link";
 
 const ListAlbums = () => {
   const [albums, setAlbums] = useContext(AlbumContext);
@@ -14,33 +15,38 @@ const ListAlbums = () => {
   };
   return (
     <>
-      <AddAlbum />
       {/* move this to a navbar or menu component */}
+      <AddAlbum />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {albums.map((album, index) => {
             return (
-              <div
-                key={index}
-                className="flex justify-center  flex-col bg-cyan-900 hover:bg-primary shadow-md hover:scale-105 hover:shadow-xl hover:cursor-pointer transform transition duration-300 ease-in-out  mb-5 p-5 aspect-square"
-              >
-                <div className="p-4">
-                  <h2 className="text-xl font-bold  text-gray-50">
-                    {album.title}
-                  </h2>
-                  {/* <button
-                    className="text-complementary hover:text-triadic_one hover:font-extrabold"
-                    onClick={(event) => {
-                      handleDelete(event, album.id);
-                    }}
-                  >
-                    Delete Album
-                  </button> */}
+              <Link href={`album/${album.id}`}>
+                <div
+                  key={index}
+                  className="flex justify-center  flex-col bg-cyan-900 hover:bg-primary shadow-md hover:scale-105 hover:shadow-xl hover:cursor-pointer transform transition duration-300 ease-in-out  mb-5 p-5 aspect-square"
+                >
+                  <div className="p-4">
+                    <h2 className="text-xl font-bold  text-gray-50">
+                      {album.title}
+                    </h2>
+                    <div>
+                      {/* MOVE Delete to Album View page */}
+                      {/* <button
+                      className="text-complementary hover:text-triadic_one hover:font-extrabold"
+                      onClick={(event) => {
+                        handleDelete(event, album.id);
+                      }}
+                      >
+                      Delete Album
+                    </button> */}
+                    </div>
+                  </div>
+                  <p className="text-triadic_two_two font-semibold mb-2">
+                    {album.artist}
+                  </p>
                 </div>
-                <p className="text-triadic_two_two font-semibold mb-2">
-                  {album.artist} - {album.year_released}
-                </p>
-              </div>
+              </Link>
             );
           })}
         </div>

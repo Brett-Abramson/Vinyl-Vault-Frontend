@@ -6,7 +6,10 @@ const AddAlbum = () => {
   let newAlbum = {
     artist: "",
     title: "",
-    year_released: "",
+    tracks: 0,
+    release_date: "",
+    artwork: "",
+    spotify_id:""
   };
   const [album, setAlbum] = useState(newAlbum);
   const [albumList, setAlbumList] = useContext(AlbumContext);
@@ -15,9 +18,14 @@ const AddAlbum = () => {
   const addAlbum = (event) => {
     event.preventDefault();
     setAlbumList([...albumList, album]);
-    axios.post("http://localhost:8000/api/albums", album).then((response) => {
-      console.log(response);
+    axios.post("http://localhost:8000/api/albums", album)
+    .then(
+      (response) => {console.log(response),
+        (err) => console.error(err)
       // maybe create a redirect to a page saying you have made album, or some action that causes RELOAD because delete will not work until reload
+    })
+    .catch((error) => {
+      console.error("Error adding album:", error);
     });
     setShowModal(false);
   };
@@ -78,19 +86,51 @@ const AddAlbum = () => {
                 />
 
                 <label
-                  htmlFor="year_released"
+                  htmlFor="tracks"
                   className="block font-medium mb-2 text-gray-700"
                 >
-                  Year of Albums Release
+                  Number of Tracks
                 </label>
                 <input
                   type="number"
-                  id="year_released"
-                  name="year_released"
-                  value={album.year_released}
+                  id="tracks"
+                  name="tracks"
+                  placeholder="not required"
+                  value={album.tracks}
                   onChange={handleChange}
                   className="border-2 border-gray-300 mb-4 p-2 rounded-lg w-full"
-                  required
+                />
+
+                <label
+                  htmlFor="release_date"
+                  className="block font-medium mb-2 text-gray-700"
+                >
+                  Release Date
+                </label>
+                <input
+                  type="text"
+                  id="release_date"
+                  name="release_date"
+                  placeholder="not required"
+                  value={album.release_date}
+                  onChange={handleChange}
+                  className="border-2 border-gray-300 mb-4 p-2 rounded-lg w-full"
+                />
+
+                <label
+                  htmlFor="artwork"
+                  className="block font-medium mb-2 text-gray-700"
+                >
+                  Album Image
+                </label>
+                <input
+                  type="text"
+                  id="artwork"
+                  name="artwork"
+                  placeholder="not required"
+                  value={album.artwork}
+                  onChange={handleChange}
+                  className="border-2 border-gray-300 mb-4 p-2 rounded-lg w-full"
                 />
 
                 <button
