@@ -86,15 +86,10 @@ const Spotify = () => {
   };
 
   return (
-    <>
-      {/* <button onClick={getToken}>Token</button>
-      <br />
-      <button onClick={searchAlbums}>Search albums</button>
-      <br />
-      <button onClick={()=>{console.log(albums)}}>whats in albums</button> */}
+    <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg">
       <Link href="/">Home</Link>
       <SearchSpotify searchAlbums={searchAlbums} />
-      <div>
+      <div className="">
         {albums.map((album) => {
           return (
             <div key={album.id}>
@@ -120,7 +115,7 @@ const Spotify = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
