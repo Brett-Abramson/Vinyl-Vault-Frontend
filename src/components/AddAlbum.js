@@ -9,7 +9,7 @@ const AddAlbum = () => {
     tracks: 0,
     release_date: "",
     artwork: "",
-    spotify_id:""
+    spotify_id: "",
   };
   const [album, setAlbum] = useState(newAlbum);
   const [albumList, setAlbumList] = useContext(AlbumContext);
@@ -18,32 +18,35 @@ const AddAlbum = () => {
   const addAlbum = (event) => {
     event.preventDefault();
     setAlbumList([...albumList, album]);
-    axios.post("http://localhost:8000/api/albums", album)
-    .then(
-      (response) => {console.log(response),
-        (err) => console.error(err)
-      // maybe create a redirect to a page saying you have made album, or some action that causes RELOAD because delete will not work until reload
-    })
-    .catch((error) => {
-      console.error("Error adding album:", error);
-    });
+    axios
+      .post("http://localhost:8000/api/albums", album)
+      .then((response) => {
+        console.log(response), (err) => console.error(err);
+        // maybe create a redirect to a page saying you have made album, or some action that causes RELOAD because delete will not work until reload
+      })
+      .catch((error) => {
+        console.error("Error adding album:", error);
+      });
     setShowModal(false);
   };
   const handleChange = (event) => {
     setAlbum({ ...album, [event.target.name]: event.target.value });
   };
   const toggleModal = () => {
-    setShowModal(!showModal)
-  }
+    setShowModal(!showModal);
+  };
 
   return (
     <div>
-      <button
-        className="bg-amber-500 hover:bg-primary text-triadic_two font-bold py-2 px-4 rounded"
-        onClick={() => toggleModal()}
-      >
-        {showModal ? "Cancel" : "Add Album"}
-      </button>
+      <div className="flex flex-col justify-around">
+        <button
+          className="bg-amber-500 hover:bg-primary text-triadic_two font-bold py-2 px-4 rounded"
+          onClick={() => toggleModal()}
+        >
+          {showModal ? "Cancel" : "Add Album"}
+        </button>
+      </div>
+
       {showModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen">
