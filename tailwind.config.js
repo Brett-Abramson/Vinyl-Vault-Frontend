@@ -342,6 +342,8 @@ module.exports = {
       ],
       anton: ["Anton", "sans-serif"],
       barrio: ["Barrio", "cursive"],
+      orbitron: ["Orbitron", "sans-serif"],
+      oswald: ["Oswald", "sans-serif"]
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
