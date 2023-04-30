@@ -28,7 +28,7 @@ const Spotify = () => {
     };
     return axios(authOptions)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data.access_token;
       })
       .catch((error) => {
@@ -68,7 +68,7 @@ const Spotify = () => {
       artwork: album.images[0].url,
       spotify_id: album.id,
     };
-    console.log(newAlbum);
+    // console.log(newAlbum);
     setAlbum(newAlbum);
     addAlbum(newAlbum);
   };
@@ -77,7 +77,8 @@ const Spotify = () => {
     axios
       .post("https://vinyl-vault.herokuapp.com/api/albums", newAlbum)
       .then((response) => {
-        console.log(response), (err) => console.error(err);
+        // console.log(response), 
+        (err) => console.error(err);
       })
       .catch((error) => {
         console.error("Error adding album: ", error);

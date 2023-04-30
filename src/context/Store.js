@@ -15,6 +15,9 @@ const Store = ( {children} ) => {
       .catch((error) => console.error(error))
   }
 
+  const handleAlbumChange = (addAlbum) => {
+    
+  }
   useEffect(() => {
     getAlbums()
   }, [])

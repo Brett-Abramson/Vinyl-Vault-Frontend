@@ -17,7 +17,7 @@ const AddAlbum = () => {
 
   const addAlbum = (event) => {
     event.preventDefault();
-    setAlbumList([...albumList, album]);
+    // setAlbumList([...albumList, album]);
     axios
       .post("https://vinyl-vault.herokuapp.com/api/albums", album)
       .then((response) => {
