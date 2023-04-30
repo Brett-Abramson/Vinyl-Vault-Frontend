@@ -10,7 +10,7 @@ const ListAlbums = () => {
   const [album, setAlbum] = useState(null);
 
   const handleDelete = (id) => {
-    axios.delete("http://localhost:8000/api/albums/" + id).then((response) => {
+    axios.delete("https://vinyl-vault.herokuapp.com/api/albums/" + id).then((response) => {
       console.log(response);
       setAlbums(albums.filter((album) => album.id !== id));
     });

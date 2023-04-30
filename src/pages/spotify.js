@@ -75,7 +75,7 @@ const Spotify = () => {
 
   const addAlbum = (newAlbum) => {
     axios
-      .post("http://localhost:8000/api/albums", newAlbum)
+      .post("https://vinyl-vault.herokuapp.com/api/albums", newAlbum)
       .then((response) => {
         console.log(response), (err) => console.error(err);
       })

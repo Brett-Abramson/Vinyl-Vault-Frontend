@@ -19,7 +19,7 @@ const AddAlbum = () => {
     event.preventDefault();
     setAlbumList([...albumList, album]);
     axios
-      .post("http://localhost:8000/api/albums", album)
+      .post("https://vinyl-vault.herokuapp.com/api/albums", album)
       .then((response) => {
         console.log(response), (err) => console.error(err);
         // maybe create a redirect to a page saying you have made album, or some action that causes RELOAD because delete will not work until reload

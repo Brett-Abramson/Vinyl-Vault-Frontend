@@ -7,7 +7,7 @@ const Store = ( {children} ) => {
     const [albumList, setAlbumList] = useState([])
       const getAlbums = () => {
     axios
-      .get("http://localhost:8000/api/albums")
+      .get("https://vinyl-vault.herokuapp.com/api/albums")
       .then(
         (response) => setAlbumList(response.data),
         (err) => console.error(err)
