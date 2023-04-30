@@ -1,8 +1,8 @@
 const axios = require("axios");
 import { useState, useContext } from "react";
 import SearchSpotify from "@/components/SearchSpotify";
-import Link from "next/link";
 import { AlbumContext } from "@/context/AlbumContext";
+// import AlbumView from "@/components/AlbumView";
 
 const client_id = process.env.NEXT_PUBLIC_CLIENT_ID;
 const client_secret = process.env.NEXT_PUBLIC_CLIENT_SECRET;
@@ -11,6 +11,8 @@ const Spotify = () => {
   const [albums, setAlbums] = useState([]);
   const [albumList, setAlbumList] = useContext(AlbumContext);
   const [album, setAlbum] = useState({});
+  // const [showView, setShowView] = useState(false);
+  // const [viewAlbum, setViewAlbum] = useState(null)
 
   const getToken = () => {
     let authOptions = {
@@ -72,50 +74,65 @@ const Spotify = () => {
   };
 
   const addAlbum = (newAlbum) => {
-    // event.preventDefault();
-    // setAlbumList([...albumList, album]);
     axios
       .post("http://localhost:8000/api/albums", newAlbum)
       .then((response) => {
         console.log(response), (err) => console.error(err);
-        // maybe create a redirect to a page saying you have made album, or some action that causes RELOAD because delete will not work until reload
       })
       .catch((error) => {
         console.error("Error adding album: ", error);
       });
   };
+  // const handleAlbumClick = (album) => {
+  //   setViewAlbum(album);
+  //   setShowView(true);
+  // };
 
   return (
-    <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg">
-      <Link href="/">Home</Link>
-      <SearchSpotify searchAlbums={searchAlbums} />
-      <div className="">
-        {albums.map((album) => {
-          return (
-            <div key={album.id}>
-              <br />
-              <h2>{album.name}</h2>
-              <p>Artists</p>
-              {album.artists.map((artist) => {
-                return (
-                  <div key={artist.id}>
-                    <h3>{artist.name}</h3>
-                  </div>
-                );
-              })}
-              <button
-                onClick={() => {
-                  handleSubmit(album);
-                }}
+    <>
+          {/* {showView ? (
+          <AlbumView 
+            album={viewAlbum} 
+            onClose={() => setShowView(false)} />
+      ) : null} */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <SearchSpotify searchAlbums={searchAlbums} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {albums.map((album) => {
+            return (
+              <div
+                key={album.id}
+                className="flex justify-between flex-col bg-analogous_two hover:bg-primary shadow-md hover:scale-105 hover:shadow-xl transform transition duration-300 ease-in-out my-5 p-5 aspect-square rounded-lg"
+                // onClick={() => {
+                //   handleAlbumClick(album);
+                // }}
               >
-                Add to Owned Albums
-              </button>
-              <br />
-            </div>
-          );
-        })}
+                <br />
+                <h2 className="text-2xl font-oswald font-bold">{album.name}</h2>
+                <div>
+                  {album.artists.map((artist) => {
+                    return (
+                      <div key={artist.id}>
+                        <p className="font-lg font-oswald">{artist.name}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+                <button
+                  onClick={() => {
+                    handleSubmit(album);
+                  }}
+                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                >
+                  Add to Owned Albums
+                </button>
+                <br />
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import Image from "next/image"
 const AlbumView = (props) => {
 
     return (
-        <div className="fixed z-20 top-1/4 inset-0 overflow-y-auto">
+        <div className="fixed z-20 top-20 inset-0 overflow-y-auto">
             <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div className="bg-stone-900 rounded-lg overflow-hidden w-full max-w-md mx-auto shadow-lg z-50">
                     <div className="relative bg-stone-800 py-5 px-5">
