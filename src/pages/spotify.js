@@ -63,7 +63,7 @@ const Spotify = () => {
       title: album.name,
       tracks: album.total_tracks,
       release_date: album.release_date,
-      artwork: album.images[1].url,
+      artwork: album.images[0].url,
       spotify_id: album.id,
     };
     console.log(newAlbum);
