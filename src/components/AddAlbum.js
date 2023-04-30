@@ -50,8 +50,9 @@ const AddAlbum = () => {
       {showModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen">
-            <div className="bg-white rounded-lg shadow-xl p-4">
-              <h2 className="text-2xl font-bold mb-4">Add Album</h2>
+            <div className="rounded-lg shadow-xl p-4">
+            <button className="bg-analogous_one hover:bg-blue-700 text-triadic_one font-bold py-2 px-4 rounded" onClick={toggleModal}>Cancel</button>
+              {/* <h2 className="bg-gray-900 text-white text-2xl font-bold mb-4 rounded-full">Add Album</h2> */}
               <form
                 onSubmit={addAlbum}
                 className="bg-gradient-to-br from-analogous_two to-triadic_two p-4 rounded-lg"
