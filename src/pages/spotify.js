@@ -52,7 +52,7 @@ const Spotify = () => {
     setAlbums(response.data.albums.items);
     return response.data;
   };
-  const handleSubmit = async (album) => {
+  const handleSubmit = (album) => {
     let artistName = album.artists
       .map((album) => {
         return album.name.toString();
@@ -64,11 +64,11 @@ const Spotify = () => {
       tracks: album.total_tracks,
       release_date: album.release_date,
       artwork: album.images[1].url,
-      spotify_id: album.id
+      spotify_id: album.id,
     };
     console.log(newAlbum);
-    await setAlbum(newAlbum)
-        addAlbum(newAlbum)
+    setAlbum(newAlbum);
+    addAlbum(newAlbum);
   };
 
   const addAlbum = (newAlbum) => {
@@ -81,7 +81,7 @@ const Spotify = () => {
         // maybe create a redirect to a page saying you have made album, or some action that causes RELOAD because delete will not work until reload
       })
       .catch((error) => {
-        console.error("Error adding album:", error);
+        console.error("Error adding album: ", error);
       });
   };
 
@@ -95,7 +95,7 @@ const Spotify = () => {
       <Link href="/">Home</Link>
       <SearchSpotify searchAlbums={searchAlbums} />
       <div>
-        {albums.map((album, index) => {
+        {albums.map((album) => {
           return (
             <div key={album.id}>
               <br />
