@@ -36,7 +36,7 @@ const AlbumView = (props) => {
                         <p className="">Tracks: {props.album.tracks}</p>
                     </div>
                     <div>
-                        <button className="bg-amber-500 hover:bg-complementary text-triadic_two font-bold py-2 px-4 rounded" onClick={()=>{props.handleDelete(props.album.id)}}>Remove Album From Collection</button>
+                        <button className="bg-amber-500 hover:bg-complementary text-triadic_two font-bold py-2 px-4 mb-3 rounded" onClick={()=>{props.handleDelete(props.album.id)}}>Remove Album From Collection</button>
                     </div>
                 </div>
             </div>
