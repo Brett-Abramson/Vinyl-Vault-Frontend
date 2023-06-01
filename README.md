@@ -2,7 +2,7 @@
 _____
 ## What is Vinyl Vault
 ____
-Vinyl Vault is a currently personal Album Database Management App. A user can utilize Spotify's API to search for Albums they may have in their personal collection. Then they can add and keep track of all of their albums in a digital database.
+Vinyl Vault is currently a personal Album Database Management App. A user can utilize Spotify's API to search for Albums they may have in their personal collection. Then they can add and keep track of all of their albums in a digital database.
 
 To see the live version, navigate to
 https://vinyl-vault-frontend-git-main-brettmabramson-gmailcom.vercel.app/Vinyl Vault
