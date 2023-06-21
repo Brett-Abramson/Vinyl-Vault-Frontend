@@ -2,6 +2,8 @@ const axios = require("axios");
 import { useState, useContext } from "react";
 import SearchSpotify from "@/components/SearchSpotify";
 import { AlbumContext } from "@/context/AlbumContext";
+import getToken from "@/components/SpotifyConfig";
+
 // import AlbumView from "@/components/AlbumView";
 
 const client_id = process.env.NEXT_PUBLIC_CLIENT_ID;
@@ -14,28 +16,7 @@ const Spotify = () => {
   // const [showView, setShowView] = useState(false);
   // const [viewAlbum, setViewAlbum] = useState(null)
 
-  const getToken = () => {
-    let authOptions = {
-      method: "post",
-      url: "https://accounts.spotify.com/api/token",
-      headers: {
-        Authorization:
-          "Basic " +
-          new Buffer.from(client_id + ":" + client_secret).toString("base64"),
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      data: "grant_type=client_credentials",
-    };
-    return axios(authOptions)
-      .then((response) => {
-        // console.log(response.data);
-        return response.data.access_token;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
+ 
   const searchAlbums = async (query) => {
     const token = await getToken();
 
