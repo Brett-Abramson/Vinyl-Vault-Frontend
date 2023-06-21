@@ -1,8 +1,9 @@
 const axios = require("axios");
 import { useState, useContext } from "react";
-import SearchSpotify from "@/components/SearchSpotify";
+import SearchSpotifyAPI from "@/components/SearchSpotifyAPI";
 import { AlbumContext } from "@/context/AlbumContext";
 import getToken from "@/components/SpotifyConfig";
+import AlbumItem from "@/components/AlbumItem";
 
 // import AlbumView from "@/components/AlbumView";
 
@@ -78,40 +79,15 @@ const Spotify = () => {
             onClose={() => setShowView(false)} />
       ) : null} */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <SearchSpotify searchAlbums={searchAlbums} />
+        <SearchSpotifyAPI searchAlbums={searchAlbums} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {albums.map((album) => {
-            return (
-              <div
-                key={album.id}
-                className="flex justify-between flex-col bg-analogous_two hover:bg-primary shadow-md hover:scale-105 hover:shadow-xl transform transition duration-300 ease-in-out my-5 p-5 aspect-square rounded-lg"
-                // onClick={() => {
-                //   handleAlbumClick(album);
-                // }}
-              >
-                <br />
-                <h2 className="text-2xl font-oswald font-bold">{album.name}</h2>
-                <div>
-                  {album.artists.map((artist) => {
-                    return (
-                      <div key={artist.id}>
-                        <p className="font-lg font-oswald">{artist.name}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-                <button
-                  onClick={() => {
-                    handleSubmit(album);
-                  }}
-                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-                >
-                  Add to Owned Albums
-                </button>
-                <br />
-              </div>
-            );
-          })}
+          {albums.map((album) => (
+            <AlbumItem
+              key={album.id}
+              album={album}
+              handleAddAlbum={addAlbum}
+              />
+          ))}
         </div>
       </div>
     </>
