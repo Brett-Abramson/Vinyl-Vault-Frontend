@@ -7,18 +7,20 @@ const AlbumItem = ({ album, handleAddAlbum }) => {
       <h2 className="text-2xl font-oswald font-bold">{album.name}</h2>
       <div>
         {album.artists.map((artist) => {
-          <div key={artist.id}>
-            <p className="font-lg font-oswald">{artist.name}</p>
-          </div>;
+          return (
+            <div key={artist.id}>
+              <p className="font-lg font-oswald">{artist.name}</p>
+            </div>
+          );
         })}
-        <button
-          onClick={() => handleAddAlbum(album)}
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-        >
-          Add to Owned Albums
-        </button>
-        <br />
       </div>
+      <button
+        onClick={() => handleAddAlbum(album)}
+        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+      >
+        Add to Owned Albums
+      </button>
+      <br />
     </div>
   );
 };
