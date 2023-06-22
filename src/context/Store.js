@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { AlbumContext } from "./AlbumContext"
 import axios from "axios"
-import { ApiContext } from "./AlbumContext"
 
 const Store = ( {children} ) => {
     const [albumList, setAlbumList] = useState([])
