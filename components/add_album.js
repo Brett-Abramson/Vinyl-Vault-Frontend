@@ -80,4 +80,4 @@ const AddAlbum = ( {album} ) => {
   );
 };
 
-export default AddAlbum;
+// export default AddAlbum;
