@@ -85,7 +85,7 @@ const Spotify = () => {
             <AlbumItem
               key={album.id}
               album={album}
-              handleAddAlbum={addAlbum}
+              handleAddAlbum={handleSubmit}
               />
           ))}
         </div>
